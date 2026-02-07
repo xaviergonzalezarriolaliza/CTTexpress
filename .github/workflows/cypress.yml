@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '**/*.js'
+      - '**/*.yml'
   workflow_dispatch:
 
 jobs:
@@ -23,20 +24,19 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install mochawesome@7.1.3 mochawesome-merge@4.3.0 mochawesome-report-generator@6.3.2 --save-dev
+          npm install cypress-junit --save-dev
       - name: Run Cypress tests and generate mochawesome report
         run: |
-          mkdir -p mochawesome-results
-          npx cypress run --reporter mochawesome --reporter-options "reportDir=mochawesome-results,overwrite=false,html=false,json=true,reportFilename=mochawesome-$TIMESTAMP"
-          npx mochawesome-merge mochawesome-results/*.json > mochawesome-results/merged-$TIMESTAMP.json
+          mkdir -p junit-results
+          npx cypress run --reporter junit --reporter-options "mochaFile=junit-results/results-$TIMESTAMP.xml,toConsole=true"
       - name: Print merged JSON file contents
         run: |
-          cat mochawesome-results/merged-$TIMESTAMP.json || echo "Merged JSON not found"
+          cat junit-results/results-$TIMESTAMP.xml || echo "JUnit XML not found"
       - name: Generate mochawesome HTML report
         run: |
-          npx marge mochawesome-results/mochawesome-$TIMESTAMP.json --reportDir mochawesome-results --reportFilename awesome-report-$TIMESTAMP.html --overwrite --reportTitle "CTTexpress Test Report"
+          echo "JUnit report generated. Skipping HTML generation."
       - name: Upload mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
-          name: mochawesome-html-report
-          path: mochawesome-results/*.html
+          name: junit-xml-report
+          path: junit-results/*.xml

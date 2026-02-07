@@ -58,7 +58,7 @@ describe('CTTexpress Full Website Smoke Test', () => {
       cy.get('body').should('not.be.empty'); // Assert body is not empty
   });
 
-  // Minimal: Just click the submen link under Envíos para particulares and check the body is visible
+  // Minimal: Just click the submenu link under Envíos para particulares and check the body is visible
   it('should click the Envios para particulares submenu link and see the page', () => {
     cy.visit('https://www.cttexpress.com');
     cy.get('a[role="link"][aria-disabled="true"]').first().trigger('mouseover');
