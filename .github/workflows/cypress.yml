@@ -24,19 +24,19 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install cypress-junit --save-dev
+          npm install cypress-html-reporter --save-dev
       - name: Run Cypress tests and generate mochawesome report
         run: |
-          mkdir -p junit-results
-          npx cypress run --reporter junit --reporter-options "mochaFile=junit-results/results-$TIMESTAMP.xml,toConsole=true"
+          mkdir -p html-report
+          npx cypress run --reporter cypress-html-reporter --reporter-options "output=html-report/report.html"
       - name: Print merged JSON file contents
         run: |
-          cat junit-results/results-$TIMESTAMP.xml || echo "JUnit XML not found"
+          cat html-report/report.html || echo "HTML report not found"
       - name: Generate mochawesome HTML report
         run: |
-          echo "JUnit report generated. Skipping HTML generation."
+          echo "HTML report generated. Skipping additional generation."
       - name: Upload mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
-          name: junit-xml-report
-          path: junit-results/*.xml
+          name: cypress-html-report
+          path: html-report/*.html
