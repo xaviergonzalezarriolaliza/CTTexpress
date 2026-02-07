@@ -8,6 +8,15 @@ on:
       - '**/*.js'
   workflow_dispatch:
 
+        with:
+  cypress-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
           node-version: 'lts/*'
       - name: Install dependencies
         run: npm install
@@ -19,5 +28,7 @@ on:
       - name: Upload test report artifact
         uses: actions/upload-artifact@v4
         with:
+          name: cypress-test-report
+          path: results/
           name: cypress-test-report
           path: results/
