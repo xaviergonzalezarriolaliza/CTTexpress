@@ -30,4 +30,3 @@ on:
         with:
           name: cypress-test-report
           path: results/
-          name: cypress-test-report
