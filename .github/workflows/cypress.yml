@@ -34,7 +34,7 @@ jobs:
           cat mochawesome-results/merged-$TIMESTAMP.json || echo "Merged JSON not found"
       - name: Generate mochawesome HTML report
         run: |
-          npx marge mochawesome-results/merged-$TIMESTAMP.json --reportDir mochawesome-results --reportFilename awesome-report-$TIMESTAMP.html
+          npx marge mochawesome-results/mochawesome-$TIMESTAMP.json --reportDir mochawesome-results --reportFilename awesome-report-$TIMESTAMP.html
       - name: Upload mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
