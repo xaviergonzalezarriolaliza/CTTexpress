@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-02-07T17:41:33.555Z",
+    "end": "2026-02-07T17:42:02.364Z",
+    "duration": 28809,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9eaa817c-a64a-4134-8a6d-0539d7c63571",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cttexpress_full_website.cy.js",
+      "file": "cypress\\e2e\\cttexpress_full_website.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9613fb9b-4ef6-4e04-b3c3-b2a5e6c46520",
+          "title": "CTTexpress Full Website Smoke Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display the main menu on the homepage",
+              "fullTitle": "CTTexpress Full Website Smoke Test should display the main menu on the homepage",
+              "timedOut": null,
+              "duration": 7027,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.cttexpress.com');\ncy.get('nav').should('be.visible');\ncy.get('nav a').should('have.length.greaterThan', 0); // Assert menu has links\ncy.get('nav').should('contain.text', 'Envíos'); // Assert menu contains expected text",
+              "err": {},
+              "uuid": "e24b2527-aeaf-4440-bf05-8740f198e886",
+              "parentUUID": "9613fb9b-4ef6-4e04-b3c3-b2a5e6c46520",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should load the homepage and have a title that contains CTT",
+              "fullTitle": "CTTexpress Full Website Smoke Test should load the homepage and have a title that contains CTT",
+              "timedOut": null,
+              "duration": 3816,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.cttexpress.com');\ncy.title().should('include', 'CTT');\ncy.get('body').should('be.visible'); // Assert body is visible\ncy.url().should('include', 'cttexpress'); // Assert URL contains domain",
+              "err": {},
+              "uuid": "77090ed1-5ead-4760-a015-0c24bf7cc593",
+              "parentUUID": "9613fb9b-4ef6-4e04-b3c3-b2a5e6c46520",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have a visible body element",
+              "fullTitle": "CTTexpress Full Website Smoke Test should have a visible body element",
+              "timedOut": null,
+              "duration": 3421,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.cttexpress.com');\ncy.get('body').should('be.visible');\ncy.get('body').should('not.be.empty'); // Assert body is not empty",
+              "err": {},
+              "uuid": "460d69f6-7313-4b65-85b3-2f6fc81b9a9c",
+              "parentUUID": "9613fb9b-4ef6-4e04-b3c3-b2a5e6c46520",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should click the Envíos para empresas submenu link and see the page",
+              "fullTitle": "CTTexpress Full Website Smoke Test should click the Envíos para empresas submenu link and see the page",
+              "timedOut": null,
+              "duration": 5657,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.cttexpress.com');\ncy.get('a[href=\"/envios/\"]').first().trigger('mouseover');\ncy.get('a[href=\"/envios/\"]').parent().find('ul a').first().click({\n  force: true\n});\ncy.get('body').should('be.visible');\ncy.url().should('include', '/envios'); // Assert URL changed to envios\ncy.get('body').should('not.be.empty'); // Assert body is not empty",
+              "err": {},
+              "uuid": "e2060f53-f5d8-4ef9-8b80-51a8534db82d",
+              "parentUUID": "9613fb9b-4ef6-4e04-b3c3-b2a5e6c46520",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should click the Envíos para particulares submenu link and see the page",
+              "fullTitle": "CTTexpress Full Website Smoke Test should click the Envíos para particulares submenu link and see the page",
+              "timedOut": null,
+              "duration": 5634,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.cttexpress.com');\ncy.get('a[role=\"link\"][aria-disabled=\"true\"]').first().trigger('mouseover');\ncy.get('a[role=\"link\"][aria-disabled=\"true\"]').first().parent().find('ul a').first().click({\n  force: true\n});\ncy.get('body').should('be.visible');\ncy.url().should('include', '/servicios'); // Assert URL changed to servicios (actual result)\ncy.get('body').should('not.be.empty'); // Assert body is not empty",
+              "err": {},
+              "uuid": "45f65f3d-7056-4077-a5aa-b027e70271e3",
+              "parentUUID": "9613fb9b-4ef6-4e04-b3c3-b2a5e6c46520",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e24b2527-aeaf-4440-bf05-8740f198e886",
+            "77090ed1-5ead-4760-a015-0c24bf7cc593",
+            "460d69f6-7313-4b65-85b3-2f6fc81b9a9c",
+            "e2060f53-f5d8-4ef9-8b80-51a8534db82d",
+            "45f65f3d-7056-4077-a5aa-b027e70271e3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 25555,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": true,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
