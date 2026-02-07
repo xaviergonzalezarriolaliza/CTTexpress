@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install mochawesome@7.1.3 mochawesome-merge@4.3.0 mochawesome-report-generator@6.2.4 --save-dev
+          npm install mochawesome@7.1.3 mochawesome-merge@4.3.0 mochawesome-report-generator@6.3.2 --save-dev
       - name: Run Cypress tests and generate mochawesome report
         run: |
           mkdir -p mochawesome-results
