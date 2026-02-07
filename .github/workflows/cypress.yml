@@ -9,7 +9,7 @@ on:
       - '**/*.js'
   workflow_dispatch:
 
-
+jobs:
   cypress-tests:
     runs-on: ubuntu-latest
     steps:
