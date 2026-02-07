@@ -59,7 +59,7 @@ describe('CTTexpress Full Website Smoke Test', () => {
   });
 
   // Minimal: Just click the submenu link under Envíos para particulares and check the body is visible
-  it('should click the Envios para particulares submen link and see the page', () => {
+  it('should click the Envios para particulares submenu link and see the page', () => {
     cy.visit('https://www.cttexpress.com');
     cy.get('a[role="link"][aria-disabled="true"]').first().trigger('mouseover');
     cy.get('a[role="link"][aria-disabled="true"]').first().parent().find('ul a').first().click({ force: true });
