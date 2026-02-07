@@ -1,3 +1,4 @@
+## Force reload for GitHub Actions
 ## Trigger again
 ## Trigger workflow run
 name: Run Cypress Tests on JS Changes
