@@ -31,16 +31,21 @@ describe('CTTexpress Full Website Smoke Test', () => {
   it('should display the main menu on the homepage', () => {
     cy.visit('https://www.cttexpress.com');
     cy.get('nav').should('be.visible');
+      cy.get('nav a').should('have.length.greaterThan', 0); // Assert menu has links
+      cy.get('nav').should('contain.text', 'Envíos'); // Assert menu contains expected text
   });
 
   it('should load the homepage and have a title that contains CTT', () => {
     cy.visit('https://www.cttexpress.com');
     cy.title().should('include', 'CTT');
+      cy.get('body').should('be.visible'); // Assert body is visible
+      cy.url().should('include', 'cttexpress'); // Assert URL contains domain
   });
 
   it('should have a visible body element', () => {
     cy.visit('https://www.cttexpress.com');
     cy.get('body').should('be.visible');
+      cy.get('body').should('not.be.empty'); // Assert body is not empty
   });
 
   // Minimal: Just click the submenu link under Envíos para empresas and check the body is visible
@@ -49,6 +54,8 @@ describe('CTTexpress Full Website Smoke Test', () => {
     cy.get('a[href="/envios/"]').first().trigger('mouseover');
     cy.get('a[href="/envios/"]').parent().find('ul a').first().click({ force: true });
     cy.get('body').should('be.visible');
+      cy.url().should('include', '/envios'); // Assert URL changed to envios
+      cy.get('body').should('not.be.empty'); // Assert body is not empty
   });
 
   // Minimal: Just click the submenu link under Envíos para particulares and check the body is visible
@@ -57,6 +64,8 @@ describe('CTTexpress Full Website Smoke Test', () => {
     cy.get('a[role="link"][aria-disabled="true"]').first().trigger('mouseover');
     cy.get('a[role="link"][aria-disabled="true"]').first().parent().find('ul a').first().click({ force: true });
     cy.get('body').should('be.visible');
+    cy.url().should('include', '/servicios'); // Assert URL changed to servicios (actual result)
+    cy.get('body').should('not.be.empty'); // Assert body is not empty
   });
 
 });
