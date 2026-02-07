@@ -1,5 +1,3 @@
-// trigger workflow
-
 const { HomePage } = require('./pages/HomePage');
 const { ContactPage } = require('./pages/ContactPage');
 
@@ -35,7 +33,7 @@ describe('CTTexpress Full Website Smoke Test', () => {
     cy.get('nav').should('be.visible');
   });
 
-  it('should load the homepage and have a title containing CTT', () => {
+  it('should load the homepage and have a title that contains CTT', () => {
     cy.visit('https://www.cttexpress.com');
     cy.title().should('include', 'CTT');
   });
