@@ -1,3 +1,4 @@
+## Trigger workflow run
 name: Run Cypress Tests on JS Changes
 
 on:
