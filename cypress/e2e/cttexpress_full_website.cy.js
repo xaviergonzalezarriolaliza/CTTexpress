@@ -49,7 +49,7 @@ describe('CTTexpress Full Website Smoke Test', () => {
   });
 
   // Minimal: Just click the submenu link under Envíos para empresas and check the body is visible
-  it('should click the Envíos para empresas submenu link and see the page', () => {
+  it('should click the Envíos para empresas submen link and see the page', () => {
     cy.visit('https://www.cttexpress.com');
     cy.get('a[href="/envios/"]').first().trigger('mouseover');
     cy.get('a[href="/envios/"]').parent().find('ul a').first().click({ force: true });
