@@ -1,13 +1,13 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  allowCypressEnv: false,
+  allowCypressEnv: true,
 
   e2e: {
+    baseUrl: 'https://httpbin.org',
     setupNodeEvents(on, config) {
-      // implement node event listeners here
     },
-    pageLoadTimeout: 180000, // Increase timeout to 3 minutes
+    pageLoadTimeout: 180000, 
     reporterOptions: {
       reportDir: "cypress/results",
       overwrite: false,

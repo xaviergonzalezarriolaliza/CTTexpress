@@ -2,6 +2,7 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "cypress": "^15.10.0",
+    "cypress-plugin-api": "^2.11.2",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^4.4.1",
     "playwright": "^1.58.2",
