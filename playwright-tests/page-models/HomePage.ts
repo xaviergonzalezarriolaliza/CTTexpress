@@ -49,16 +49,14 @@ export class HomePage {
   }
 
   async clickEmpresasSubmenu() {
-    await this.page.hover('a[href="/envios/"]');
-    const submenu = await this.page.$('a[href="/envios/"]');
-    if (submenu) {
-      const ul = await submenu.evaluateHandle(el => el.parentElement?.querySelector('ul'));
-      if (ul) {
-        const firstLink = await ul.$('a');
-        if (firstLink) {
-          await firstLink.click();
-        }
-      }
+    const empresasLink = this.page.locator('a[href="/envios/"]');
+    if (await empresasLink.isVisible()) {
+      await empresasLink.hover();
+      // Wait for submenu to appear
+      const submenu = empresasLink.locator('..').locator('ul a');
+      await submenu.first().waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
+      await submenu.first().click({ force: true });
+      await this.page.waitForLoadState('networkidle');
     }
   }
 
@@ -68,16 +66,14 @@ export class HomePage {
   }
 
   async clickParticularesSubmenu() {
-    await this.page.hover('a[role="link"][aria-disabled="true"]');
-    const submenu = await this.page.$('a[role="link"][aria-disabled="true"]');
-    if (submenu) {
-      const ul = await submenu.evaluateHandle(el => el.parentElement?.querySelector('ul'));
-      if (ul) {
-        const firstLink = await ul.$('a');
-        if (firstLink) {
-          await firstLink.click();
-        }
-      }
+    const particularesLink = this.page.locator('a[role="link"][aria-disabled="true"]');
+    if (await particularesLink.isVisible()) {
+      await particularesLink.hover();
+      // Wait for submenu to appear
+      const submenu = particularesLink.locator('..').locator('ul a');
+      await submenu.first().waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
+      await submenu.first().click({ force: true });
+      await this.page.waitForLoadState('networkidle');
     }
   }
 
