@@ -50,13 +50,20 @@ export class HomePage {
 
   async clickEmpresasSubmenu() {
     const empresasLink = this.page.locator('a[href="/envios/"]');
-    if (await empresasLink.isVisible()) {
-      await empresasLink.hover();
-      // Wait for submenu to appear
-      const submenu = empresasLink.locator('..').locator('ul a');
-      await submenu.first().waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
-      await submenu.first().click({ force: true });
-      await this.page.waitForLoadState('networkidle');
+    try {
+      if (await empresasLink.isVisible()) {
+        await empresasLink.scrollIntoViewIfNeeded();
+        await empresasLink.hover();
+        await this.page.waitForTimeout(500); // Extra wait for menu animation
+        const submenu = empresasLink.locator('..').locator('ul a');
+        await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
+        await submenu.first().scrollIntoViewIfNeeded();
+        await submenu.first().click({ force: true });
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(500); // Wait for navigation
+      }
+    } catch (e) {
+      console.error('Empresas submenu click failed:', e);
     }
   }
 
@@ -67,13 +74,20 @@ export class HomePage {
 
   async clickParticularesSubmenu() {
     const particularesLink = this.page.locator('a[role="link"][aria-disabled="true"]');
-    if (await particularesLink.isVisible()) {
-      await particularesLink.hover();
-      // Wait for submenu to appear
-      const submenu = particularesLink.locator('..').locator('ul a');
-      await submenu.first().waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
-      await submenu.first().click({ force: true });
-      await this.page.waitForLoadState('networkidle');
+    try {
+      if (await particularesLink.isVisible()) {
+        await particularesLink.scrollIntoViewIfNeeded();
+        await particularesLink.hover();
+        await this.page.waitForTimeout(500); // Extra wait for menu animation
+        const submenu = particularesLink.locator('..').locator('ul a');
+        await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
+        await submenu.first().scrollIntoViewIfNeeded();
+        await submenu.first().click({ force: true });
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(500); // Wait for navigation
+      }
+    } catch (e) {
+      console.error('Particulares submenu click failed:', e);
     }
   }
 
