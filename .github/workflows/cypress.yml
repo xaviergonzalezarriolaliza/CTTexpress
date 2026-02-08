@@ -36,9 +36,6 @@ jobs:
       - name: Generate mochawesome HTML report
         run: |
           echo "Mochawesome HTML report generated. Skipping additional generation."
-      - name: Fix asset paths in HTML report
-        run: |
-          sed -i 's|assets\\\\|assets/|g; s|assets\\|assets/|g; s|assets\|assets/|g' mochawesome-report/mochawesome.html
       - name: Upload mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
