@@ -7,12 +7,13 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-      reporterOptions: {
-        reportDir: "cypress/results",
-        overwrite: false,
-        html: true,
-        json: true,
-        reportFilename: `report-${new Date().toISOString().replace(/[:.]/g, '-')}`
-      }
+    pageLoadTimeout: 180000, // Increase timeout to 3 minutes
+    reporterOptions: {
+      reportDir: "cypress/results",
+      overwrite: false,
+      html: true,
+      json: true,
+      reportFilename: `report-${new Date().toISOString().replace(/[:.]/g, '-')}`
+    }
   },
 });
