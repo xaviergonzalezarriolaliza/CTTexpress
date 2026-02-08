@@ -114,17 +114,6 @@ export class HomePage {
       }
     }
     throw new Error('Particulares submenu click failed after retries');
-        await this.page.waitForTimeout(500); // Extra wait for menu animation
-        const submenu = particularesLink.locator('..').locator('ul a');
-        await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
-        await submenu.first().scrollIntoViewIfNeeded();
-        await submenu.first().click({ force: true });
-        await this.page.waitForLoadState('networkidle');
-        await this.page.waitForTimeout(500); // Wait for navigation
-      }
-    } catch (e) {
-      console.error('Particulares submenu click failed:', e);
-    }
   }
 
   async urlContainsServicios() {
