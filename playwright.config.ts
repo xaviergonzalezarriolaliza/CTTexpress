@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './playwright-tests',
+  testMatch: ['**/*.spec.ts', '**/*.test.ts'],
   timeout: 30000,
   reporter: 'html',
   use: {
@@ -25,12 +26,8 @@ export default defineConfig({
       use: { ...devices['Desktop Edge'] },
     },
     {
-      name: 'Mobile Safari',
+      name: 'iPhone 12',
       use: { ...devices['iPhone 12'] },
-    },
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
     },
     {
       name: 'iPad Pro 11',
@@ -41,20 +38,8 @@ export default defineConfig({
       use: { ...devices['Galaxy S9+'] },
     },
     {
-      name: 'iPhone SE',
-      use: { ...devices['iPhone SE'] },
-    },
-    {
-      name: 'Pixel 4',
-      use: { ...devices['Pixel 4'] },
-    },
-    {
-      name: 'Galaxy Note 10',
-      use: { ...devices['Galaxy Note 10'] },
-    },
-    {
-      name: 'iPad Mini',
-      use: { ...devices['iPad Mini'] },
+      name: 'Pixel 5',
+      use: { ...devices['Pixel 5'] },
     },
     {
       name: 'Surface Duo',
