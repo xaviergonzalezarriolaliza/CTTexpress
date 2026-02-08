@@ -50,21 +50,34 @@ export class HomePage {
 
   async clickEmpresasSubmenu() {
     const empresasLink = this.page.locator('a[href="/envios/"]');
-    try {
-      if (await empresasLink.isVisible()) {
-        await empresasLink.scrollIntoViewIfNeeded();
-        await empresasLink.hover();
-        await this.page.waitForTimeout(500); // Extra wait for menu animation
-        const submenu = empresasLink.locator('..').locator('ul a');
-        await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
-        await submenu.first().scrollIntoViewIfNeeded();
-        await submenu.first().click({ force: true });
-        await this.page.waitForLoadState('networkidle');
-        await this.page.waitForTimeout(500); // Wait for navigation
+    let retries = 3;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        if (await empresasLink.isVisible()) {
+          await empresasLink.scrollIntoViewIfNeeded();
+          await empresasLink.hover();
+          await this.page.waitForTimeout(500);
+          const submenu = empresasLink.locator('..').locator('ul a');
+          // Wait for submenu to be attached and visible
+          await submenu.first().waitFor({ state: 'attached', timeout: 2000 }).catch(() => {});
+          await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
+          if (await submenu.first().isVisible()) {
+            await submenu.first().scrollIntoViewIfNeeded();
+            await submenu.first().click({ force: true });
+            await this.page.waitForLoadState('networkidle');
+            await this.page.waitForTimeout(500);
+            return;
+          } else {
+            console.warn(`Empresas submenu not visible, retrying hover action (attempt ${attempt})`);
+            await this.page.waitForTimeout(500);
+          }
+        }
+      } catch (e) {
+        console.error(`Empresas submenu click failed (attempt ${attempt}):`, e);
+        await this.page.waitForTimeout(500);
       }
-    } catch (e) {
-      console.error('Empresas submenu click failed:', e);
     }
+    throw new Error('Empresas submenu click failed after retries');
   }
 
   async urlContainsEnvios() {
@@ -74,10 +87,33 @@ export class HomePage {
 
   async clickParticularesSubmenu() {
     const particularesLink = this.page.locator('a[role="link"][aria-disabled="true"]');
-    try {
-      if (await particularesLink.isVisible()) {
-        await particularesLink.scrollIntoViewIfNeeded();
-        await particularesLink.hover();
+    let retries = 3;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        if (await particularesLink.isVisible()) {
+          await particularesLink.scrollIntoViewIfNeeded();
+          await particularesLink.hover();
+          await this.page.waitForTimeout(500);
+          const submenu = particularesLink.locator('..').locator('ul a');
+          await submenu.first().waitFor({ state: 'attached', timeout: 2000 }).catch(() => {});
+          await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
+          if (await submenu.first().isVisible()) {
+            await submenu.first().scrollIntoViewIfNeeded();
+            await submenu.first().click({ force: true });
+            await this.page.waitForLoadState('networkidle');
+            await this.page.waitForTimeout(500);
+            return;
+          } else {
+            console.warn(`Particulares submenu not visible, retrying hover action (attempt ${attempt})`);
+            await this.page.waitForTimeout(500);
+          }
+        }
+      } catch (e) {
+        console.error(`Particulares submenu click failed (attempt ${attempt}):`, e);
+        await this.page.waitForTimeout(500);
+      }
+    }
+    throw new Error('Particulares submenu click failed after retries');
         await this.page.waitForTimeout(500); // Extra wait for menu animation
         const submenu = particularesLink.locator('..').locator('ul a');
         await submenu.first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
