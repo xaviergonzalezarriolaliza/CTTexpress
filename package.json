@@ -1,8 +1,10 @@
 {
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "cypress": "^15.10.0",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^4.4.1",
+    "playwright": "^1.58.2",
     "typescript": "^5.9.3"
   },
   "scripts": {
