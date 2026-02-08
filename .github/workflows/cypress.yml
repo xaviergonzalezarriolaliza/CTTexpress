@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.yml'
   workflow_dispatch:
 
@@ -37,9 +38,30 @@ jobs:
           echo "Mochawesome HTML report generated. Skipping additional generation."
       - name: Fix asset paths in HTML report
         run: |
-          sed -i 's|assets\\\\\\\\|assets/|g; s|assets\\\\|assets/|g; s|assets\\|assets/|g' mochawesome-report/mochawesome.html
+          sed -i 's|assets\\\\|assets/|g; s|assets\\|assets/|g; s|assets\|assets/|g' mochawesome-report/mochawesome.html
       - name: Upload mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-html-report
           path: mochawesome-report/**
+
+  playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - name: Upload Playwright HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright-report/**
