@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 // Accept cookies helper
-async function acceptCookies(page) {
+import { Page } from '@playwright/test';
+async function acceptCookies(page: Page) {
   const aceptarBtn = await page.$('button, input[type="button"], input[type="submit"]');
   if (aceptarBtn) {
     const text = await aceptarBtn.innerText();
@@ -42,7 +43,7 @@ test.describe('CTTexpress Full Website Smoke Test', () => {
     const body = await page.$('body');
     expect(body).not.toBeNull();
     const bodyText = await page.textContent('body');
-    expect(bodyText.length).toBeGreaterThan(0);
+    expect(bodyText && bodyText.length > 0).toBeTruthy();
   });
 
   test('should click the Envíos para empresas submenu link and see the page', async ({ page }) => {
@@ -77,6 +78,8 @@ test.describe('CTTexpress Full Website Smoke Test', () => {
     await page.goto('https://www.cttexpress.com/servicios/particulares/calcular-envio');
     const iframe = await page.$('iframe');
     expect(iframe).not.toBeNull();
-    expect(await iframe.isVisible()).toBeTruthy();
+    if (iframe) {
+      expect(await iframe.isVisible()).toBeTruthy();
+    }
   });
 });
