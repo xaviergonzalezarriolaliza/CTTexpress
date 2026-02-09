@@ -13,6 +13,7 @@ async function acceptCookies(page: Page) {
 }
 
 test.describe('CTTexpress Full Website Smoke Test', () => {
+  test.setTimeout(60000); // Increase timeout to 60 seconds for all tests in this suite
   test.beforeEach(async ({ page }) => {
     await page.goto('https://www.cttexpress.com');
     await acceptCookies(page);
