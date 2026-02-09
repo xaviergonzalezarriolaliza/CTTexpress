@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-02-09T08:38:35.285Z",
+    "end": "2026-02-09T08:38:36.656Z",
+    "duration": 1371,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "fb48324a-e04a-434c-bd67-a624a75a524c",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cttexpress_api.cy.js",
+      "file": "cypress\\e2e\\cttexpress_api.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "31e2b676-8c55-45d8-936f-1fb1b81eaf9b",
+          "title": "JSONPlaceholder API - Example Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return 200 and a list of posts",
+              "fullTitle": "JSONPlaceholder API - Example Test should return 200 and a list of posts",
+              "timedOut": null,
+              "duration": 1279,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api({\n  method: 'GET',\n  url: '/get'\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property('url');\n  expect(response.body).to.have.property('headers');\n});",
+              "err": {},
+              "uuid": "9fcf90c0-fced-498c-8c68-0ba0dcf42c57",
+              "parentUUID": "31e2b676-8c55-45d8-936f-1fb1b81eaf9b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9fcf90c0-fced-498c-8c68-0ba0dcf42c57"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1279,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report-2026-02-09T08-38-19-740Z",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "reportFilename": "report-2026-02-09T08-38-19-740Z"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

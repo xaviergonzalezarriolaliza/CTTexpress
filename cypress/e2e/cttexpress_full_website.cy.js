@@ -162,4 +162,25 @@ describe('CTTexpress Full Website Smoke Test', () => {
   });
 });
 
-// TODO: CI/CD, awesome report?, same with TS and python?
+
+// Cross-device viewport tests
+describe('CTTexpress Cross-Device Viewport Tests', () => {
+  const devices = [
+    { name: 'iPad 2', viewport: 'ipad-2' },
+    { name: 'Android Phone', viewport: { width: 360, height: 740 } },
+    { name: 'iPhone 6 Plus', viewport: 'iphone-6+' }
+  ];
+
+  devices.forEach(device => {
+    it(`should display homepage correctly on ${device.name}`, () => {
+      if (typeof device.viewport === 'string') {
+        cy.viewport(device.viewport);
+      } else {
+        cy.viewport(device.viewport.width, device.viewport.height);
+      }
+      cy.visit('https://www.cttexpress.com');
+      cy.get('body').should('be.visible');
+      cy.get('nav').should('be.visible');
+    });
+  });
+});
